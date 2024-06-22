@@ -1,14 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
-    <main class="flex flex-col items-center ">
-        <div class="my-12"><img class="w-70 h-40 sm:w-80" src="/static/logo/uplook_logo1.png" alt="Uplook logo"></div>
+    <main class="flex flex-col items-center min-h-screen">
+        <div class="flex h-40 my-12"><img class="w-70 h-40 sm:w-80" src="/static/logo/uplook_logo1.png" alt="Uplook logo"></div>
         <div class="text-center h-content w-content items-center ">
-            <h2 class="text-[#b9b9b9] sm:text-lg" >Welcome to Uplook Image library! Search below for copywrite-free images.</h2>
+            <h2 class="text-[#b9b9b9] max-sm:mx-2 sm:text-lg" >Welcome to Uplook Image library! Search below for copywrite-free images.</h2>
         </div>
-        <div class="flex justify-center h-10 w-[600px] gap-0.5 my-8">
-            <input class="rounded-lg w-80" type="text" placeholder="Search...">
-            <button class="bg-green-900 h-15 w-11 rounded-lg hover:bg-green-800" id="search-button" type="submit"></button>
+        <div class="flex justify-center h-10 w-content gap-0.5 my-8">
+            <input class="rounded-lg w-80 max-sm:w-60" type="text" placeholder="Search...">
+            <button class="bg-green-900 shadow-lg h-15 w-11 rounded-lg hover:bg-green-800" id="search-button" type="submit"></button>
+        </div>
+        <div class="flex max-sm:flex-wrap justify-center h-8 w-content gap-3 my-0.5 text-[#b9b9b9]">
+            <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="nature-tag" type="submit">Nature</button>
+            <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="abstract-tag" type="submit">Abstract</button>
+            <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="supercars-tag" type="submit">Supercars</button>
+            <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="city-tag" type="submit">City</button>
+            <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="neon-tag" type="submit">Neon</button>
+            <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="tech-tag" type="submit">Technology</button> 
+        </div>
+        <div class="grid max-sm:gid-cols-1 max-sm:gap-2 sm:grid-cols-2 sm:gap-3 md:grid-cols-5 lg:cols-6 min-h-screen w-full bg-red-900 my-40">
+            <div class="h-80 w-80 bg-yellow-700 mx-auto rounded"><img src="" alt=""></div>
+            <div class="h-80 w-80 bg-orange-700 mx-auto rounded"><img src="" alt=""></div>
+            <div class="h-80 w-80 bg-blue-700 mx-auto rounded"><img src="" alt=""></div>
+            <div class="h-80 w-80 bg-violet-700 mx-auto rounded"><img src="" alt=""></div>
+            <div class="h-80 w-80 bg-gray-700 mx-auto rounded"><img src="" alt=""></div>
+            <div class="h-80 w-80 bg-white mx-auto rounded"><img src="" alt=""></div>
+            
         </div>
     </main>
-{% endblock %}
+{% endblock %}   grid max-sm:gid-cols-1 max-sm:gap-2 sm:grid-cols-2 sm:gap-3 md:grid-cols-5 lg:cols-6 min-h-screen items-center justify-center w-full bg-red-900 my-40
 
