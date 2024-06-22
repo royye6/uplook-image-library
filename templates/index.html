@@ -1,4 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-
+    <main class="flex flex-col items-center ">
+        <div class="my-12"><img class="w-70 h-40 sm:w-80" src="/static/logo/uplook_logo1.png" alt="Uplook logo"></div>
+        <div class="text-center h-content w-content items-center ">
+            <h2 class="text-[#b9b9b9] sm:text-lg" >Welcome to Uplook Image library! Search below for copywrite-free images.</h2>
+        </div>
+        <div class="flex justify-center h-10 w-[600px] gap-0.5 my-8">
+            <input class="rounded-lg w-80" type="text" placeholder="Search...">
+            <button class="bg-green-900 h-15 w-11 rounded-lg hover:bg-green-800" id="search-button" type="submit"></button>
+        </div>
+    </main>
 {% endblock %}
+
