@@ -1,3 +1,3 @@
 # uplook-image-library
 
-## search for and download free wallpapers
+## Search for and download free wallpapers
