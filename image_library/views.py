@@ -23,3 +23,19 @@ def index(request):
 # def index(request):
 #     return render(request, 'index.html')
 
+
+def register(request):
+    if request.method == 'POST':
+        pass
+    return render(request, 'register.html')
+
+
+def login(request):
+    if request.method == 'POST':
+        pass
+    return render(request, 'login.html')
+
+
+def profile(request):
+    return render(request, 'profile.html')
+

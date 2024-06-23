@@ -10,9 +10,10 @@
 <body class="bg-[#243837]">
     <header class="sticky w-full">
         <nav class="flex justify-end items-center gap-4 h-12 p-5 text-[#b9b9b9]" >
-            <div class="hover:text-[#775b22]"><a href="#">Register</a></div>
-            <div class="hover:text-[#775b22]"><a href="#">Log in</a></div>
-            <a href="#"><div class="h-10 w-10 bg-white rounded-full shadow-lg"></div></a>
+            <div class="hover:text-[#775b22]"><a href="{{ '' }}">Home</a></div>
+            <div class="hover:text-[#775b22]"><a href="{{ 'register' }}">Register</a></div>
+            <div class="hover:text-[#775b22]"><a href="{{ 'login' }}">Log in</a></div>
+            <a href="{{ 'profile' }}"><div class="h-10 w-10 bg-white rounded-full shadow-lg"></div></a>
         </nav>
     </header>
     {% block content %} {% endblock %}
@@ -20,4 +21,3 @@
 </html>
 
 
-  <!-- <div class="flex bg-[#243837] justify-center min-h-screen w-full"> -->
