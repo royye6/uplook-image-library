@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
     <main class="flex flex-col my-20 items-center mx-w-full min-h-screen">
+        
         <form action="" method="POST" class="flex flex-col w-[360px] sm:w-[400px] gap-5 h-[500px] hover: shadow-2xl rounded justify-center items-center px-2 bg-gray-900">
-        <!-- <p class="text-red-500">{{ error }}</p> -->
-            <input type="text" id="username" name="username" placeholder="Username" class="w-full rounded">
-            <input type="email" id="email" name="email" placeholder="Email" class="w-full">
-            <input type="password" id="password" name="password" placeholder="Password" class="w-full">
-            <input type="password" id="password2" name="password2" placeholder="Re-enter your password" class="w-full">
-            <button type="submit" id="register_button" class="w-full bg-red-900 h-12 text-white hover:bg-red-700 shadow-xl ">Register</button>
+            {% csrf_token %}
+                <!-- <p class="text-red-500">{{ error }}</p> -->
+                <input type="text" id="username" name="username" placeholder="Username" class="w-full rounded">
+                <input type="email" id="email" name="email" placeholder="Email" class="w-full">
+                <input type="password" id="password" name="password" placeholder="Password" class="w-full">
+                <input type="password" id="password2" name="password2" placeholder="Re-enter your password" class="w-full">
+                <button type="submit" id="register_button" class="w-full bg-red-900 h-12 text-white hover:bg-red-700 shadow-xl ">Register</button>
         </form>
     </main>
 {% endblock %}   

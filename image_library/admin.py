@@ -1,7 +1,6 @@
 from django.contrib import admin
 from datetime import datetime
 
-# Register your models here.
 
 class User():
     # id 
