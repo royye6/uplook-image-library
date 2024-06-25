@@ -4,27 +4,35 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 
 
-# def index(request):
-#     access_key = os.environ.get('ACCESS_KEY')
-
-#     if not access_key:
-#         raise ValueError('Access key not found in environment variables')
-    
-#     if request.method == 'GET':
-#         search_term = request.GET.get('search_term')
-#         per_page = 1
-#         url = f'https://api.unsplash.com/search/photos?client_id={access_key}&query={search_term}&per_page={per_page}&page=1'
-#         response=requests.get(url)
-
-#     if response.status_code == 200:
-#         print(response.json())
-#         return render(request, 'index.html', context={'unsplash_data': response.json()})
-#     else:
-#         return render(request, 'index.html', context={'error': 'API request failed'})
-
-
 def index(request):
-    return render(request, 'index.html')
+    access_key = os.environ.get('ACCESS_KEY')
+
+    if not access_key:
+        raise ValueError('Access key not found in environment variables')
+    
+    search_term = request.GET.get('search_term')
+    if search_term:
+        per_page = 1
+        url = f'https://api.unsplash.com/search/photos?client_id={access_key}&query={search_term}&per_page={per_page}&page=1'
+        response=requests.get(url)
+
+        if response.status_code == 200:
+            unsplash_data = response.json()
+            print(unsplash_data)
+        else:
+            unsplash_data = None
+            print("API data not retrieved")
+            messages.info(request, 'API data not retrieved')
+    else:
+        unsplash_data = None
+        # print("Error retrieving API data")
+        # messages.info(request, 'Error retrieving API data')
+
+    return render(request, 'index.html', context={'unsplash_data': unsplash_data})
+
+
+# def index(request):
+#     return render(request, 'index.html')
 
 
 def register(request):
