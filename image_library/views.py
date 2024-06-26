@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 import requests, environ, os, json
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from pexels_api import Api
 
 
 def index(request):
@@ -12,23 +13,24 @@ def index(request):
     
     search_term = request.GET.get('search_term')
     if search_term:
-        per_page = 1
-        url = f'https://api.unsplash.com/search/photos?client_id={access_key}&query={search_term}&per_page={per_page}&page=1'
-        response=requests.get(url)
-
-        if response.status_code == 200:
-            unsplash_data = response.json()
-            print(unsplash_data)
+        client = Api(access_key)
+        response = client.get_photos(query=search_term, per_page=1, page=1)
+        
+        if response.success:
+            photos = response.photos
+            context = {'photos': photos}
+            print(response)
+            return render(request, 'index.html', context)
+       
         else:
-            unsplash_data = None
-            print("API data not retrieved")
+            error_message = response.errors[0]['message']
+            context = {'error_message': error_message}
+            print("error_message")
             messages.info(request, 'API data not retrieved')
+            return render(request, 'index.html', context)
     else:
-        unsplash_data = None
-        # print("Error retrieving API data")
-        # messages.info(request, 'Error retrieving API data')
-
-    return render(request, 'index.html', context={'unsplash_data': unsplash_data})
+        context = {None}
+        return render(request, 'index.html', context)
 
 
 # def index(request):
