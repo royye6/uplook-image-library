@@ -2,39 +2,39 @@ from django.shortcuts import render, redirect
 import requests, environ, os, json
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-from pexels_api import Api
-
-
-def index(request):
-    access_key = os.environ.get('ACCESS_KEY')
-
-    if not access_key:
-        raise ValueError('Access key not found in environment variables')
-    
-    search_term = request.GET.get('search_term')
-    if search_term:
-        client = Api(access_key)
-        response = client.get_photos(query=search_term, per_page=1, page=1)
-        
-        if response.success:
-            photos = response.photos
-            context = {'photos': photos}
-            print(response)
-            return render(request, 'index.html', context)
-       
-        else:
-            error_message = response.errors[0]['message']
-            context = {'error_message': error_message}
-            print("error_message")
-            messages.info(request, 'API data not retrieved')
-            return render(request, 'index.html', context)
-    else:
-        context = {None}
-        return render(request, 'index.html', context)
+from pexelsapi.pexels import Pexels
 
 
 # def index(request):
-#     return render(request, 'index.html')
+#     access_key = os.environ.get('ACCESS_KEY')
+
+#     if not access_key:
+#         raise ValueError('Access key not found in environment variables')
+    
+#     search_term = request.GET.get('search_term')
+#     if search_term:
+#         client = Api(access_key)
+#         response = client.get_photos(query=search_term, per_page=1, page=1)
+        
+#         if response.success:
+#             photos = response.photos
+#             context = {'photos': photos}
+#             print(response)
+#             return render(request, 'index.html', context)
+       
+#         else:
+#             error_message = response.errors[0]['message']
+#             context = {'error_message': error_message}
+#             print("error_message")
+#             messages.info(request, 'API data not retrieved')
+#             return render(request, 'index.html', context)
+#     else:
+#         context = {None}
+#         return render(request, 'index.html', context)
+
+
+def index(request):
+    return render(request, 'index.html')
 
 
 def register(request):
