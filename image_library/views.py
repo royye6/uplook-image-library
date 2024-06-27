@@ -5,36 +5,38 @@ from django.contrib import messages
 from pexelsapi.pexels import Pexels
 
 
-# def index(request):
-#     access_key = os.environ.get('ACCESS_KEY')
-
-#     if not access_key:
-#         raise ValueError('Access key not found in environment variables')
-    
-#     search_term = request.GET.get('search_term')
-#     if search_term:
-#         client = Api(access_key)
-#         response = client.get_photos(query=search_term, per_page=1, page=1)
-        
-#         if response.success:
-#             photos = response.photos
-#             context = {'photos': photos}
-#             print(response)
-#             return render(request, 'index.html', context)
-       
-#         else:
-#             error_message = response.errors[0]['message']
-#             context = {'error_message': error_message}
-#             print("error_message")
-#             messages.info(request, 'API data not retrieved')
-#             return render(request, 'index.html', context)
-#     else:
-#         context = {None}
-#         return render(request, 'index.html', context)
-
-
 def index(request):
-    return render(request, 'index.html')
+    access_key = os.environ.get('PEXELS_KEY')
+
+    if not access_key:
+        raise KeyError('Pexels access key not found in environment variables')
+    
+    search_term = request.GET.get('search_term')
+    if search_term:
+        per_page = 16
+        page = 1
+        url = f'https://api.pexels.com/v1/search?query={search_term}&per_page={per_page}&page={page}&orientation=landscape'
+
+        headers = {"Authorization": f"{access_key}"}
+        response=requests.get(url, headers=headers)
+
+        if response.status_code == 200:
+            data = response.json()
+            print(data)
+            photos = data['photos']
+            return render(request, 'index.html', context={'photos': photos})
+        else:
+            data = None
+            print(f"Error: {response.status_code}")
+            messages.info(request, f'API request failed (status code: {response.status_code})')
+    else:
+        photos = []
+
+    return render(request, 'index.html', context={'photos': photos})
+
+
+# def index(request):
+#     return render(request, 'index.html')
 
 
 def register(request):
@@ -58,7 +60,7 @@ def register(request):
 
                     user_login = auth.authenticate(username=username, password=password)
                     auth.login(request, user_login)
-                    return redirect('profile')
+                    return redirect('profile')  
             else:
                 messages.info(request, 'Passwords do not match')
                 return redirect('register')

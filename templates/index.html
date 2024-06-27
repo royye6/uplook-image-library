@@ -17,15 +17,15 @@
             <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="neon-tag" type="submit">Neon</button>
             <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="tech-tag" type="submit">Technology</button> 
         </div>
-
-        <div class="grid max-sm:gid-cols-1 max-sm:gap-2 sm:grid-cols-2 sm:gap-3 md:grid-cols-4 lg:cols-6 min-h-screen w-full  my-40">
-            {% for photo in photots %}
-             console.log({{ photo }})
-                <img class="w-content h-content rounded-lg shadow-md" src="{{ image.urls.regular }}" alt="{{ image.alt_description }}">
-                <!-- <p class="text-red text-bold">{{ error }}</p> -->
-                <!-- <div class="h-[400px] w-[300px] bg-gray-200 mx-auto rounded"></div> -->
-
-            {% endfor %}
+        <div class="p-5 md:p-10 mt-40">
+            <div class="columns-1 gap-5 lg:gap-8 sm:columns-2 lg:columns-3 xl:columns-4 [&>img:not(:first-child)]:mt-5 lg:[&>img:not(:first-child)]:mt-8">
+                {% for photo in photos %}
+                    <img class="w-content h-content rounded shadow-md transition-transform hover:scale-105" 
+                        src="{{ photo.src.medium }}" alt="{{ photo.alt }}">
+                    <!-- <p class="text-red text-bold">{{ error }}</p> -->
+                    <!-- <div class="h-[400px] w-[300px] bg-gray-200 mx-auto rounded"></div> -->
+                {% endfor %}
+            </div>
         </div>
     </main>
 {% endblock %}   
