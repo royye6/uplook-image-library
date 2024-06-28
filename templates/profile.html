@@ -1,5 +1,47 @@
 {% extends 'base.html' %}
+
+{% block header %} 
+<header class="sticky w-full">
+    <nav class="flex justify-end items-center gap-4 h-12 p-5 text-[#b9b9b9]" >
+        <div class="hover:text-[#775b22]"><a href="/">Home</a></div>
+        <div class="text-slate-500"><p>Welcome {{ user.username }}</p></div>
+        <div class="hover:text-[#775b22]"><a href="/logout">Logout</a></div>
+        <a href="/profile"><div class="h-10 w-10 bg-white rounded-full shadow-lg"></div></a>
+    </nav>
+</header>
+{% endblock %}
 {% block content %}
-    # should show contents only if user is logged in. if not, should be redirected to login
-    # if logged in nav should change to sign out
+    <section class="">
+        <div class="first min-h-screen mt-2 p-12 max-sm:px-5 sm:px-14 md:px-30 lg:px-40 xl:px-60">
+            <div class="second h-content pb-10 rounded-xl bg-gray-900 p-2 mx-auto">
+                <div class="flex items-center w-full h-14 text-2xl font-bold pl-2 text-[#b9b9b9]">
+                    <p>Your Profile</p>
+                    <hr class="my-6 border-gray-200 sm:mx-auto border-gray-700 lg:my-8" />
+                </div>
+                <div class="forth flex items-center justify-between h-14 bg-gray-800 rounded mb-6">
+                    <p class="pl-3 text-lg text-[#b9b9b9] font-bold">Personal information</p>
+                    <button class="h-10 w-14 mr-3 rounded-lg bg-green-800 border-green-900 hover:border-[#b9b9b9] shadow-xl text-[#b9b9b9] text-bold text-center transition-transform hover:scale-90" id="edit_profile" type="">Edit</button>
+                </div>
+                <div class="mb-6 h-content bg-gray-800 rounded bg-gray-800 p-5 pb-5">
+                    <img class="w-16 h-16 rounded-full mb-5 p-5 bg-white " src="" alt="">
+                    <label class="block mb-2 text-sm font-medium text-white" for="file_input">Upload file</label>
+                    <input class="block w-full text-sm py-1 px-1 border rounded-lg cursor-pointer text-gray-400 focus:outline-none bg-gray-700 border-gray-600 placeholder-gray-400 cursor-not-allowed" id="file_input" type="file" disabled>
+                </div>
+                <form class="mt-10 bg-gray-800 rounded p-5">
+                    <div class="mb-6">
+                        <label for="username" class="block mb-2 text-sm font-medium text-white">Username</label>
+                        <input type="username" id="username" class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 cursor-not-allowed" placeholder="{{ user.username }}" disabled/>
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm font-medium text-white">Email address</label>
+                        <input type="email" id="email" class="border text-gray-900 text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 cursor-not-allowed" placeholder="{{ user.email }}" disabled/>
+                    </div> 
+                    <div class="mb-6">
+                        <label for="password" class="block mb-2 text-sm font-medium text-white">Password</label>
+                        <input type="password" id="password" class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 cursor-not-allowed" placeholder="•••••••••" disabled/>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </section>
 {% endblock %}   

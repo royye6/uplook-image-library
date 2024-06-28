@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 import requests, environ, os, json
 from django.contrib.auth.models import User, auth
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from pexelsapi.pexels import Pexels
 
-
+@login_required(login_url='login')
 def index(request):
     access_key = os.environ.get('PEXELS_KEY')
 
@@ -15,7 +16,7 @@ def index(request):
     if search_term:
         per_page = 16
         page = 1
-        url = f'https://api.pexels.com/v1/search?query={search_term}&per_page={per_page}&page={page}&orientation=landscape'
+        url = f'https://api.pexels.com/v1/search?query={search_term}&per_page={per_page}&orientation=landscape'
 
         headers = {"Authorization": f"{access_key}"}
         response=requests.get(url, headers=headers)
@@ -60,7 +61,7 @@ def register(request):
 
                     user_login = auth.authenticate(username=username, password=password)
                     auth.login(request, user_login)
-                    return redirect('profile')  
+                    return redirect('/')
             else:
                 messages.info(request, 'Passwords do not match')
                 return redirect('register')
@@ -79,7 +80,7 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user is not None:
                 auth.login(request, user)
-                return redirect('profile')
+                return redirect('/')
             else:
                 messages.info(request, 'Incorrect username or password')
                 return redirect('login') 
@@ -90,7 +91,13 @@ def login(request):
     else:
         return render(request, 'login.html')
 
+@login_required(login_url='login')
+def logout(request):
+    auth.logout(request)
+    return redirect('login')
 
+
+@login_required(login_url='login')
 def profile(request):
     return render(request, 'profile.html')
 
