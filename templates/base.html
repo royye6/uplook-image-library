@@ -17,7 +17,39 @@
         </nav>
     </header>
     {% block content %} {% endblock %}
+    <footer class="bg-gray-900 mt-40">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="{% url 'index' %}" class="flex max-sm:justify-center items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <img src="/static/logo/uplook_logo_black.png" class="h-8" alt="Uplook Logo" />
+                    <span class="self-center text-gray-400 font-semibold whitespace-nowrap">Powered by Royye</span>
+                </a>
+                <div class="max-sm:justify-center gap-3 flex">
+                    <div class="ad">
+                        <p class="text-gray-400">Contact Us</p>
+                    </div>
+                    <div class="transition-transform hover:scale-110">
+                        <a href="https://github.com/"><img src="/static/icons/github.svg" alt="Github icon"></a>
+                    </div>
+                    
+                    <div class="transition-transform hover:scale-110">
+                        <a href="https://za.linkedin.com/"><img src="/static/icons/linkedin.svg" alt="Linkedin icon"></a>
+                    </div>
+                    <div class="transition-transform hover:scale-110">
+                        <a href="https://x.com/"><img src="/static/icons/x-twitter.svg" alt="Github icon"></a>
+                    </div>
+                    <div class="transition-transform hover:scale-110">
+                        <a href="https://www.facebook.com/"><img src="/static/icons/facebook.svg" alt="Github icon"></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto border-gray-700 lg:my-8" />
+            <span class="block text-sm text-gray-500 sm:text-center max-sm:text-center text-gray-400">© 2024 <a href="#" class="hover:underline">Uplook™</a>. All Rights Reserved.</span>
+        </div>
+    </footer>
 </body>
 </html>
+
+
 
 

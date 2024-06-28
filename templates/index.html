@@ -3,11 +3,15 @@
     <main class="flex flex-col items-center min-h-screen">
         <div class="flex h-40 my-12"><img class="w-70 h-40 sm:w-80" src="/static/logo/uplook_logo1.png" alt="Uplook logo"></div>
         <div class="text-center h-content w-content items-center ">
-            <h2 class="text-[#b9b9b9] max-sm:mx-2 sm:text-lg" >Welcome to Uplook Image library! Search below for copywrite-free images.</h2>
+            <h1 class="text-[#b9b9b9] max-sm:mx-2 sm:text-lg" >Welcome to Uplook Image library! Search below for copywrite-free images.</h1>
         </div>
         <form action="" method="GET" class="flex justify-center h-10 w-content gap-0.5 my-8">
             <input class="rounded-lg w-80 max-sm:w-60" type="text" placeholder="Search..." id="search_term" name="search_term">
-            <button class="bg-green-900 shadow-lg h-15 w-11 rounded-lg hover:bg-green-800" id="search-button" type="submit"></button>
+            <button class="bg-green-900 shadow-lg h-15 w-11 rounded-lg hover:bg-green-800 object-cover" id="search-button" type="submit">
+                <div class="h-full w-full flex p-[11px] align-center justify-center">
+                <img class="" src="/static/icons/magnifying-glass-solid2.svg" alt="Magnifying glass icon">
+                </div>
+            </button>
         </form>
         <div class="flex max-sm:flex-wrap justify-center h-8 w-content gap-3 my-0.5 text-[#b9b9b9]">
             <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="nature-tag" type="submit">Nature</button>
