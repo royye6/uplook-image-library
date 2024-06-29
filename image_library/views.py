@@ -14,7 +14,7 @@ def index(request):
     
     search_term = request.GET.get('search_term')
     if search_term:
-        per_page = 16
+        per_page = 80
         page = 1
         url = f'https://api.pexels.com/v1/search?query={search_term}&per_page={per_page}&orientation=landscape'
 

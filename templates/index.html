@@ -15,34 +15,48 @@
     <main class="flex flex-col items-center min-h-screen">
         <div class="flex h-40 my-12"><img class="w-70 h-40 sm:w-80" src="/static/logo/uplook_logo1.png" alt="Uplook logo"></div>
         <div class="text-center h-content w-content items-center ">
-            <h1 class="text-[#b9b9b9] max-sm:mx-2 sm:text-lg" >Welcome to Uplook Image library! Search below for copywrite-free images.</h1>
+            <h1 class="text-[#b9b9b9] max-sm:mx-2 sm:text-lg" >Welcome to Uplook Image library! Search below for copyright-free images.</h1>
         </div>
         <form action="" method="GET" class="flex justify-center h-10 w-content gap-0.5 my-8">
             <input class="rounded-lg w-80 max-sm:w-60" type="text" placeholder="Search..." id="search_term" name="search_term">
-            <button class="bg-green-900 shadow-lg h-15 w-11 rounded-lg hover:bg-green-800 object-cover" id="search-button" type="submit">
+            <button class="bg-green-900 shadow-lg h-15 w-11 rounded-lg hover:bg-green-800 object-cover transition-transform hover:scale-90" id="search-button" type="submit">
                 <div class="h-full w-full flex p-[11px] align-center justify-center">
                 <img class="" src="/static/icons/magnifying-glass-solid2.svg" alt="Magnifying glass icon">
                 </div>
             </button>
         </form>
+        <form id="search-by-tag" method="GET">
         <div class="flex max-sm:flex-wrap justify-center h-8 w-content gap-3 my-0.5 text-[#b9b9b9]">
-            <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="nature-tag" type="submit">Nature</button>
-            <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="abstract-tag" type="submit">Abstract</button>
-            <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="supercars-tag" type="submit">Supercars</button>
-            <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="city-tag" type="submit">City</button>
-            <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="neon-tag" type="submit">Neon</button>
-            <button class="bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="tech-tag" type="submit">Technology</button> 
+            <button class="tag bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="nature">Nature</button>
+            <button class="tag bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="abstract">Abstract</button>
+            <button class="tag bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="supercars">Supercars</button>
+            <button class="tag bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="city">City</button>
+            <button class="tag bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="neon">Neon</button>
+            <button class="tag bg-green-900 h-content w-content rounded-xl hover:bg-green-800 px-1 sm:px-4 shadow-lg" id="tech">Technology</button>
+            <input type="hidden" name="search_term" id="search_term_field" value=""> 
         </div>
+        </form>
         <div class="p-5 md:p-10 mt-40">
             <div class="columns-1 gap-5 lg:gap-8 sm:columns-2 lg:columns-3 xl:columns-4 [&>img:not(:first-child)]:mt-5 lg:[&>img:not(:first-child)]:mt-8">
+                {% for message in messages %}
+                    <p class="text-red-500">{{ message }}</p>
+                {% endfor %}
                 {% for photo in photos %}
                     <img class="w-content h-content rounded shadow-md transition-transform hover:scale-105" 
-                        src="{{ photo.src.medium }}" alt="{{ photo.alt }}">
-                    <!-- <p class="text-red text-bold">{{ error }}</p> -->
-                    <!-- <div class="h-[400px] w-[300px] bg-gray-200 mx-auto rounded"></div> -->
+                        src="{{ photo.src.large }}" alt="{{ photo.alt }}">
                 {% endfor %}
             </div>
         </div>
     </main>
+    <script>
+        const buttons = document.querySelectorAll('.tag');
+        const searchTermField = document.getElementById('search_term_field')
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                searchTermField.value = button.id;
+                document.getElementById('search-by-tag').submit();
+            });
+        });
+    </script>
 {% endblock %}   
 
