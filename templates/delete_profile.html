@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block header %} 
+    <header class="sticky w-full">
+        <nav class="flex justify-end items-center gap-4 h-12 p-5 text-[#b9b9b9]" >
+            <div class="hover:text-[#775b22]"><a href="/">Home</a></div>
+        </nav>
+    </header>
+{% endblock %}
+{% block content %}
+    <section class="">
+        <div class="first min-h-screen mt-2 p-12 max-sm:px-5 sm:px-14 md:px-30 lg:px-40 xl:px-60">
+            <div class="second h-content pb-5 rounded-xl bg-gray-900 p-2 mx-auto">
+                <div class="flex items-center justify-center w-full h-14 text-2xl font-bold pl-2 text-[#b9b9b9]">
+                    <p class="">We're sad to see you go ☹️</p>
+                    <hr class="my-6 border-gray-200 sm:mx-auto border-gray-700 lg:my-8" />
+                </div>
+                <div class="forth flex items-center justify-between h-content p-3 bg-red-200 rounded mb-6">
+                    <p class="text-lg text-red-600 text-center font-bold">You are about to permanently delete your account. Are you sure you want to proceed?</p>
+                </div>
+                <a href="/logout"><button id="delete_profile" class="flex text-white rounded-lg text-sm w-full h-10 px-3 mt-5 font-extrabold sm:w-auto items-center transition-transform hover:scale-90 text-center justify-center bg-red-800 hover:bg-red-700">Delete Account Now</button></a>
+                </div> 
+            </div>
+        </div>
+    </section>
+{% endblock %} 

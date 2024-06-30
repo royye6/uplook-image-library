@@ -24,6 +24,8 @@ urlpatterns = [
     path('login', include('image_library.urls')),
     path('logout', include('image_library.urls')),
     path('profile', include('image_library.urls')),
+    path('profile/edit/', include('image_library.urls')),
+    path('profile/edit/delete/', include('image_library.urls')),
     path('__reload__/', include("django_browser_reload.urls")),
     path('__debug__/', include("debug_toolbar.urls")),
 ]

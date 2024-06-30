@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 import requests, environ, os, json
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 from django.contrib import messages
 from pexelsapi.pexels import Pexels
 
@@ -100,4 +101,40 @@ def logout(request):
 @login_required(login_url='login')
 def profile(request):
     return render(request, 'profile.html')
+
+
+@login_required(login_url='login')
+def edit_profile(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2')
+        if username != '' and email != '' and password != '' and password2 != '':
+            if password == password2:
+
+                user = get_user_model().objects.get(pk=request.user.pk)
+                if User.objects.filter(username=username).exclude(pk=user.pk).exists():
+                    messages.info(requests, 'Username is taken')
+                    return redirect('profile/edit')
+                
+                user.username = username
+                user.email = email
+                if password:
+                    user.set_password(password)
+                user.save()
+                messages.info(request, 'Profile updated successfully')
+                return redirect('profile')
+            else:
+                messages.info(request, 'Passwords do not match')
+                return redirect('profile/edit')
+        else:
+            messages.info(request, 'Please fill in all the required fields')
+            return redirect('profile/edit')
+    return render(request, 'edit_profile.html')
+
+
+@login_required(login_url='login')
+def delete_profile(request):
+    return render(request, 'delete_profile.html')
 
