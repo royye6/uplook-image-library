@@ -105,6 +105,39 @@ def profile(request):
 
 @login_required(login_url='login')
 def edit_profile(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2')
+        if username != '' and email != '':
+            if password == password2:
+
+                user = get_user_model().objects.get(pk=request.user.pk)
+                if User.objects.filter(username=username).exclude(pk=user.pk).exists():
+                    messages.info(requests, 'Username is taken')
+                    return redirect('edit_profile')
+                else:
+                    updated_fields = []
+                    if username != user.username:
+                        user.username = username
+                        updated_fields.append('username')
+                    if email != user.email:
+                        user.email = email
+                        updated_fields.append('email')
+                    if password:
+                        user.set_password(password)
+                        updated_fields.append('password')
+                    if updated_fields:
+                        user.save(update_fields=updated_fields)
+                        messages.info(request, 'Profile updated successfully')
+                        return redirect('profile')
+            else:
+                messages.info(request, 'Passwords do not match')
+                return redirect('edit_profile')
+        else:
+            messages.info(request, 'Please fill in all the required fields')
+            return redirect('edit_profile')
     return render(request, 'edit_profile.html')
 
 
